@@ -39,6 +39,8 @@ public class Robot extends TimedRobot {
 
     //for webcam
     CameraServer.startAutomaticCapture();
+    CameraServer.startAutomaticCapture();
+
 
     // Used to track usage of Kitbot code, please do not remove.
     HAL.report(tResourceType.kResourceType_Framework, 10);
