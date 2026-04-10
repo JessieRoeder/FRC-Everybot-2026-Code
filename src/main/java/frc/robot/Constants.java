@@ -16,7 +16,7 @@ import com.revrobotics.spark.config.SparkFlexConfig;
  *
  * <p>
  * It is advised to statically import this class (or one of its inner classes)
- * wherever the constants are needed, to reduce verbosity. 
+ * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
 
@@ -30,6 +30,14 @@ public final class Constants {
     // Current limit for drivetrain motors. 60A is a reasonable maximum to reduce
     // likelihood of tripping breakers or damaging CIM motors
     public static final int DRIVE_MOTOR_CURRENT_LIMIT = 60;
+
+    // Update these to match your actual drivetrain.
+    // Motor rotations per one wheel rotation.
+    public static final double DRIVE_GEAR_RATIO = 1.0;
+    // Wheel diameter in meters.
+    public static final double WHEEL_DIAMETER_METERS = 0.1524; // 6 in
+    // Center-to-center track width in meters.
+    public static final double TRACK_WIDTH_METERS = 0.60;
   }
 
   public static final class FuelConstants {
@@ -43,7 +51,7 @@ public final class Constants {
     public static final int LAUNCHER_MOTOR_CURRENT_LIMIT = 80;
 
     // All values likely need to be tuned based on your robot
-    public static final double INDEXER_INTAKING_PERCENT = .8; 
+    public static final double INDEXER_INTAKING_PERCENT = .8;
     public static final double INDEXER_LAUNCHING_PERCENT = 0.6;
     public static final double INDEXER_SPIN_UP_PRE_LAUNCH_PERCENT = -0.5;
 
@@ -76,5 +84,5 @@ public final class Constants {
     // help avoid turning too fast and beign difficult to control
     public static final double DRIVE_SCALING = 0.7;
     public static final double ROTATION_SCALING = 0.8;
-  } 
+  }
 }
