@@ -20,22 +20,20 @@ public class AutoShootnClimb extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
 
-    new ClimbUp(climberSubsystem).withTimeout(3),
+    new ClimbUp(climberSubsystem).withTimeout(4),
 
     // Drive for 1 seconds. The driveArcadeAuto command factory
     // intentionally creates a command which does not end which allows us to control
     // the timing using the withTimeout decorator
     new AutoDrive(driveSubsystem,0.6,  0.0).withTimeout(1),
-    // Spin up the launcher then launch balls
-    
-    new LaunchSequence(ballSubsystem).withTimeout(4),
-    
-    new Eject(ballSubsystem).withTimeout(1),
-    new LaunchSequence(ballSubsystem).withTimeout(4),
-    new Eject(ballSubsystem).withTimeout(1),
-    
+
+    // Spin up the launcher and then launch balls
+    new LaunchSequence(ballSubsystem).withTimeout(6),
+    new Eject(ballSubsystem).withTimeout(2),
+
     new AutoDrive(driveSubsystem,0.5,  0.0).withTimeout(2),
     new ClimbDown(climberSubsystem).withTimeout(5)
     );
+
   }
 }
