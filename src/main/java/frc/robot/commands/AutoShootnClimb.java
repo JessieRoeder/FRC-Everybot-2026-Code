@@ -28,8 +28,10 @@ public class AutoShootnClimb extends SequentialCommandGroup {
     new AutoDrive(driveSubsystem,0.6,  0.0).withTimeout(1),
 
     // Spin up the launcher and then launch balls
-    new LaunchSequence(ballSubsystem).withTimeout(6),
-    new Eject(ballSubsystem).withTimeout(2),
+    new LaunchSequence(ballSubsystem).withTimeout(3),
+    new Eject(ballSubsystem).withTimeout(1),
+    new LaunchSequence(ballSubsystem).withTimeout(3),
+    new Eject(ballSubsystem).withTimeout(1),
 
     new AutoDrive(driveSubsystem,0.5,  0.0).withTimeout(2),
     new ClimbDown(climberSubsystem).withTimeout(5)
