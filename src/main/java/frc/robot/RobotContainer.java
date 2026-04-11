@@ -17,6 +17,7 @@ import frc.robot.commands.Drive;
 import frc.robot.commands.Eject;
 import frc.robot.commands.ExampleAuto;
 import frc.robot.commands.AutoNothing;
+import frc.robot.commands.AutoShootnClimb;
 import frc.robot.commands.Intake;
 import frc.robot.commands.LaunchSequence;
 import frc.robot.subsystems.CANDriveSubsystem;
@@ -58,6 +59,8 @@ public class RobotContainer {
     // autoChooser.addOption
     autoChooser.setDefaultOption("Autonomous", new ExampleAuto(driveSubsystem, fuelSubsystem));
     autoChooser.addOption("Do Nothing", new AutoNothing(driveSubsystem, fuelSubsystem));
+    autoChooser.addOption("Shoot & Climb", new AutoShootnClimb(driveSubsystem, fuelSubsystem, climberSubsystem));
+
     SmartDashboard.putData(autoChooser);
   }
 

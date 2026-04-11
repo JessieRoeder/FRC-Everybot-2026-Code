@@ -7,29 +7,35 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.CANDriveSubsystem;
 import frc.robot.subsystems.CANFuelSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
+
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ExampleAuto extends SequentialCommandGroup {
+public class AutoShootnClimb extends SequentialCommandGroup {
   /** Creates a new ExampleAuto. */
-  public ExampleAuto(CANDriveSubsystem driveSubsystem, CANFuelSubsystem ballSubsystem) {
+  public AutoShootnClimb(CANDriveSubsystem driveSubsystem, CANFuelSubsystem ballSubsystem, ClimberSubsystem climberSubsystem) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+
+    new ClimbUp(climberSubsystem).withTimeout(3),
+
     // Drive for 1 seconds. The driveArcadeAuto command factory
     // intentionally creates a command which does not end which allows us to control
     // the timing using the withTimeout decorator
-    new AutoDrive(driveSubsystem,0.5,  0.0).withTimeout(1),
-    new LaunchSequence(ballSubsystem).withTimeout(5),
+    new AutoDrive(driveSubsystem,0.6,  0.0).withTimeout(1),
+    // Spin up the launcher then launch balls
     
-    new Eject(ballSubsystem).withTimeout(2),
-    new LaunchSequence(ballSubsystem).withTimeout(5)
+    new LaunchSequence(ballSubsystem).withTimeout(4),
     
+    new Eject(ballSubsystem).withTimeout(1),
+    new LaunchSequence(ballSubsystem).withTimeout(4),
+    new Eject(ballSubsystem).withTimeout(1),
+    
+    new AutoDrive(driveSubsystem,0.5,  0.0).withTimeout(2),
+    new ClimbDown(climberSubsystem).withTimeout(5)
     );
-
-    
-
-
   }
 }
