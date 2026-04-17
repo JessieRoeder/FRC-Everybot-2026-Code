@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.CANDriveSubsystem;
 import frc.robot.subsystems.CANFuelSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
@@ -20,21 +21,22 @@ public class AutoShootnClimb extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
 
-    new ClimbUp(climberSubsystem).withTimeout(4),
+    new ClimbUp(climberSubsystem).withTimeout(3.5).alongWith(new AutoDrive(driveSubsystem,0.6,  0.0).withTimeout(1)),
 
-    // Drive for 1 seconds. The driveArcadeAuto command factory
-    // intentionally creates a command which does not end which allows us to control
-    // the timing using the withTimeout decorator
-    new AutoDrive(driveSubsystem,0.6,  0.0).withTimeout(1),
 
     // Spin up the launcher and then launch balls
-    new LaunchSequence(ballSubsystem).withTimeout(3),
-    new Eject(ballSubsystem).withTimeout(1),
-    new LaunchSequence(ballSubsystem).withTimeout(3),
-    new Eject(ballSubsystem).withTimeout(1),
+    new LaunchSequence(ballSubsystem).withTimeout(1.5),
+    new WaitCommand(.5),
+
+    new LaunchSequence(ballSubsystem).withTimeout(1.5),
+    new WaitCommand(.5),
+
+    new LaunchSequence(ballSubsystem).withTimeout(1.5),
+
+
 
     new AutoDrive(driveSubsystem,0.5,  0.0).withTimeout(2),
-    new ClimbDown(climberSubsystem).withTimeout(5)
+    new ClimbDown(climberSubsystem).withTimeout(4)
     );
 
   }

@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.CANDriveSubsystem;
 import frc.robot.subsystems.CANFuelSubsystem;
 
@@ -21,11 +22,35 @@ public class ExampleAuto extends SequentialCommandGroup {
     // intentionally creates a command which does not end which allows us to control
     // the timing using the withTimeout decorator
     new AutoDrive(driveSubsystem,0.5,  0.0).withTimeout(1),
-    new LaunchSequence(ballSubsystem).withTimeout(5),
-    
-    new Eject(ballSubsystem).withTimeout(2),
-    new LaunchSequence(ballSubsystem).withTimeout(5)
-    
+
+        // Spin up the launcher and then launch balls
+    new LaunchSequence(ballSubsystem).withTimeout(1.5),
+    new WaitCommand(.5),
+
+    new LaunchSequence(ballSubsystem).withTimeout(1.5),
+    new WaitCommand(.5),
+
+    new LaunchSequence(ballSubsystem).withTimeout(1.5),
+    new WaitCommand(.5),
+
+    new LaunchSequence(ballSubsystem).withTimeout(1.5),
+    new WaitCommand(.5),
+
+    new LaunchSequence(ballSubsystem).withTimeout(1.5),
+    new WaitCommand(.5),
+
+    new LaunchSequence(ballSubsystem).withTimeout(1.5),
+    new WaitCommand(.5),
+
+    new LaunchSequence(ballSubsystem).withTimeout(1.5),
+    new WaitCommand(.5),
+
+    new LaunchSequence(ballSubsystem).withTimeout(1.5),
+    new WaitCommand(.5),
+
+    new LaunchSequence(ballSubsystem).withTimeout(1.5),
+    new WaitCommand(.5)
+
     );
 
     
